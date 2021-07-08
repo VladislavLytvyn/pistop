@@ -1,0 +1,5 @@
+.idea
+data_base_test.py
+data_base_test_many to many.py
+products.db
+__pycache__
