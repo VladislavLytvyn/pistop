@@ -1,5 +1,4 @@
-from db_connector import base, cursor
-from get_products import categories
+from db_connector import base
 
 base.execute('''CREATE TABLE categories(
              category_id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -11,7 +10,3 @@ base.execute('''CREATE TABLE products(
              cost FLOAT,
              FOREIGN KEY (product_id) REFERENCES categories(category_id))''')
 base.commit()
-
-for category in categories:
-    cursor.execute('INSERT INTO categories (category) VALUES(?)', [categories[category]])
-    base.commit()
