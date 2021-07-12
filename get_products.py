@@ -1,6 +1,6 @@
 import urllib.request
 import os
-import logging
+from create_logger import logger
 
 categories = {
     'https://pitstop.rv.ua/s/catalog?Parent=(1d6f5bec-d49c-11e4-8586-002590aa75d3)': 'tires_discs_chains',
@@ -9,9 +9,8 @@ categories = {
 
 for category in categories:
     with urllib.request.urlopen(category) as response:
-        logging.basicConfig(level=logging.INFO, filename='log.txt', format='%(asctime)s - %(message)s')
         file_name = categories[category] + '.json'
         file = open('resources' + os.sep + file_name, 'w', encoding='utf-8')
-        logging.info('Start import for ' + categories[category])
+        logger.write('Start import products for ' + categories[category])
         file.write(response.read().decode())
-        logging.info('Finish import for ' + categories[category])git
+        logger.write('Finish import products for ' + categories[category])
